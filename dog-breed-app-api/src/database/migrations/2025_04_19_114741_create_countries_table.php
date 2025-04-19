@@ -6,20 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->id();
+            $table->string('name_ja', 100)->nullable()->comment('国名（日本語）');
+            $table->string('name_en', 100)->nullable()->comment('国名（英語）');
+            $table->char('country_code', 2)->unique()->nullable()->comment('国コード');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('countries');
